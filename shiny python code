@@ -1,0 +1,111 @@
+
+import anndata as ad
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pathlib import Path as path
+import pickle
+import matplotlib.pyplot as plt
+import spac
+from spac.visualization import histogram, cal_bin_num  # Adjust your import path if needed
+
+
+# Load the example data from dev_example.pickle
+file_path = "dev_example.pickle"
+with open(file_path, 'rb') as file:
+    adata = pickle.load(file)
+
+# Display initial data info for verification, similar to 'contents' print in example
+print(adata)
+print(adata.obs['broad_cell_type'])  # Check for specific annotation content
+
+# Set test parameters
+feature = adata.var_names[0] if len(adata.var_names) > 0 else None  # Select first feature if available
+group_by = 'broad_cell_type'  # Example group_by column
+
+# Calculate bins using cal_bin_num for comparison
+print("Testing connection to cal_bin_num:")
+num_bins = cal_bin_num(len(adata.obs))
+print(f"Calculated number of bins: {num_bins}")
+
+# Call the histogram function and save the figure
+fig, axs = histogram(adata, feature=feature, group_by=group_by, together=True)
+fig.savefig('test_fig2.png')  # Save the histogram plot
+print("Histogram plot saved as test_fig2.png")
+
+#boxplot
+    def spac_Boxplot_1():
+        @profile_func
+        def profiled_boxplot_1():
+            adata = ad.AnnData(X=X_data.get(), obs=pd.DataFrame(obs_data.get()), var=pd.DataFrame(var_data.get()), layers=layers_data.get(), dtype=X_data.get().dtype)
+            if adata is not None and adata.var is not None:
+                if input.bp1_layer() != "Original" and input.bp1_anno() != "No Annotation":
+                    fig,ax = spac.visualization.boxplot(adata, annotation=input.bp1_anno(), layer=input.bp1_layer(), features=list(input.bp1_features()))
+                    return ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
+                if input.bp1_layer() == "Original" and input.bp1_anno() != "No Annotation":
+                    fig,ax = spac.visualization.boxplot(adata, annotation=input.bp1_anno(), features=list(input.bp1_features()))
+                    return ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
+                if input.bp1_layer() != "Original" and input.bp1_anno() == "No Annotation":
+                    fig,ax = spac.visualization.boxplot(adata, layer=input.bp1_layer(), features=list(input.bp1_features()))
+                    return ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
+                if input.bp1_layer() == "Original" and input.bp1_anno() == "No Annotation":
+                    fig,ax = spac.visualization.boxplot(adata, features=list(input.bp1_features()))
+                    return ax.legend(loc='upper left', bbox_to_anchor=(1, 1))
+            return None
+        result, profile_data = profiled_boxplot_1()
+        profile_output_bp1.set(profile_data)
+        return result
+
+#Spatial
+def spac_Spatial():
+        @profile_func
+        def profiled_spatial():
+            adata = ad.AnnData(X=X_data.get(), obs=pd.DataFrame(obs_data.get()), obsm=obsm_data.get(), dtype=X_data.get().dtype)
+            if adata is not None:
+                out = spac.visualization.interative_spatial_plot(adata, annotations=input.spatial_anno(), figure_width=4, figure_height=4, dot_size=input.spatial_slider())
+                out.update_xaxes(showticklabels=True, ticks="outside", tickwidth=2, ticklen=10)
+                out.update_yaxes(showticklabels=True, ticks="outside", tickwidth=2, ticklen=10)
+                return out
+            return None
+        result, profile_data = profiled_spatial()
+        profile_output_spatial.set(profile_data)
+        return result
+
+#UMAP
+def spac_UMAP():
+        @profile_func
+        def profiled_UMAP1():
+            adata = ad.AnnData(X=X_data.get(), var=pd.DataFrame(var_data.get()), obsm=obsm_data.get(), obs=obs_data.get(), dtype=X_data.get().dtype, layers=layers_data.get())
+            point_size=input.umap_slider_1()
+            if adata is not None:
+                if input.umap_rb() == "Feature":
+                    if input.umap_layer() == "Original":
+                        layer = None
+                    else:
+                        layer = input.umap_layer()
+                    out = spac.visualization.dimensionality_reduction_plot(adata, method=input.plottype(), feature=input.umap_rb_feat(), layer=layer, point_size=point_size)
+                    return out
+                elif input.umap_rb() == "Annotation":
+                    out1 = spac.visualization.dimensionality_reduction_plot(adata, method=input.plottype(), annotation=input.umap_rb_anno(), point_size=point_size)
+                    return out1
+            return None
+        result, profile_data = profiled_UMAP1()
+        profile_output_UMAP1.set(profile_data)
+        return result
+
+#Scatterplot
+def spac_Scatter():
+        @profile_func
+        def profiled_scatter():
+            x_points = get_scatterplot_coordinates_x()
+            y_points = get_scatterplot_coordinates_y()
+            btn = input.scatter_color_check()
+            if btn is False:
+                fig, ax = spac.visualization.visualize_2D_scatter(x_points,y_points)
+                return ax
+            elif btn is True:
+                fig1, ax1 = spac.visualization.visualize_2D_scatter(x_points,y_points, labels=get_color_values())
+                return ax1
+        result, profile_data = profiled_scatter()
+        profile_output_scatter.set(profile_data)
+        return result
