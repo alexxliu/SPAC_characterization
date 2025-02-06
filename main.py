@@ -9,6 +9,8 @@ def feature():
     def annotations():
         pass
 #featvanno
+    def featvanno():
+        pass
 
 #annovanno
 
