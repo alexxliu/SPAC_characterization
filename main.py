@@ -1,4 +1,6 @@
 #load
+def load():
+    pass
 
 #feature
 
@@ -7,6 +9,8 @@
 #annotations
 
 #featvanno
+def featvanno():
+    pass
 
 #annovanno
 
