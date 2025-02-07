@@ -9,11 +9,11 @@ def boxplot():
     pass #testonly
   
 #annotations
-    def annotations():
+def annotations():
         pass
 
 #featvanno
-    def featvanno():
+def featvanno():
         pass
 
 #annovanno
