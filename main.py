@@ -1,4 +1,6 @@
 #load
+def load():
+    pass
 
 #feature
 def feature(): 
