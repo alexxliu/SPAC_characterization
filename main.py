@@ -8,15 +8,15 @@ def feature():
 
 #boxplot
 def boxplot():
-    pass #testonly
+    pass
   
 #annotations
 def annotations():
-        pass
+    pass
 
 #featvanno
 def featvanno():
-        pass
+    pass
 
 #annovanno
 
