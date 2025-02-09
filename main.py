@@ -3,36 +3,28 @@ import spac
 import spac.visualization
 import spac.data_utils
 import matplotlib.pyplot as plt
+import time
 
 #load
+file_path = "path" #update with each data set
+with open(file_path, 'rb') as file:
+    contents = pickle.load(file)
+#feautes 
 
-def load_anndata(file_path):
-    """Load AnnData object from a pickle file"""
-    with open(file_path, "rb") as f:
-        anndata = pickle.load(f)
-    return anndata
-file_path = "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_10000.pickle"
-data = load_anndata(file_path)
-data.obs
+#boxplot 
 
-#feature
+#annotations 
 
-#boxplot
+# Measure the run time of the annotation histogram generation
+start_time = time.time()
 
-#annotations
-def annotations(data, annotation):
-    """Generate a histogram using spac.visualization.histogram"""
-    fig, run_times = spac.visualization.histogram(data, annotation=annotation)
-    plt.show()  # Ensure the plot is displayed
-    return fig, run_times
+#annotations histogram visualization
+fig, run_times = spac.visualization.histogram(contents, annotation="broad_cell_type")  # Replace with a valid annotation name
 
-annotation = "broad_cell_type"  # Replace with your annotation column name
-
-# Call the annotations function
-fig, run_times = annotations(data, annotation)
-
-# Print run time
-print("Run time:", run_times)
+# Calculate and print the run time
+end_time = time.time()
+run_time = end_time - start_time
+print(f"Annotations Run time: {run_time:.4f} seconds")
 
 #featvanno
 
