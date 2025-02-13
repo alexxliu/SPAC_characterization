@@ -20,9 +20,20 @@ def feature():
     pass
 
 #boxplot
-def boxplot():
-    pass
-  
+def boxplot(contents, file_path):
+    # Measure the run time of the annotation histogram generation
+    start_time = time.time()
+    
+    #boxplot visualization 
+    fig, run_times = spac.visualization.boxplot(contents, annotation="broad_cell_type")
+    
+    # Calculate the run time
+    end_time = time.time()
+    run_time = end_time - start_time
+    
+    print(f"Boxplot Run time for {file_path}: {run_time:.4f} seconds")
+    return fig, run_time
+
 #annotations 
 def annotations(contents, file_path):
     # Measure the run time of the annotation histogram generation
@@ -93,8 +104,10 @@ def main():
         
         # Call each visualzation function
         fig_anno, run_times = annotations(contents, file_path)
-        
+        fig_boxplot, run_times = boxplot(contents, file_path)
+
         #close to save mememory, only need the times
         plt.close(fig_anno)
+        plt.close(fig_boxplot)
 
 main()
