@@ -41,7 +41,12 @@ def annotations(contents, file_path):
 
 #featvanno
 def featvanno():
-    pass
+    star_t_Heat = time.time()
+    fig, t_Heat = spac.visualization.hierarchical_heatmap(adata, annotation=input.hm1_anno(), layer=None, z_score=None, vmin=vmin, vmax=vmax)
+    end_t_Heat = time.time()
+    t_Heat = end_t_Heat - star_t_Heat
+    print(f"Execution Time: econds")
+    return fig, t_Heat
 
 #annovanno
 
