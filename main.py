@@ -4,20 +4,13 @@ import spac.visualization
 import spac.data_utils
 import matplotlib.pyplot as plt
 import time
-import anndata as ad
-import numpy as np
-import sys
-import time
-import matplotlib.pyplot as plt
-import spac
-from spac.visualization import histogram, cal_bin_num
 
 #load
-# Load the example data from dev_example.pickle
-file_path = "dev_example.pickle"
+# Load the example data from dev_example.pickle, taking it from pickled to usable python 
+file_path = file_path
 with open(file_path, 'rb') as file:
     adata = pickle.load(file)
-
+    
 #feature
 def feature(): 
     pass
@@ -65,7 +58,7 @@ file_paths = [
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_90000.pickle",
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_110000.pickle",
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_130000.pickle",
-    "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_150000.pickle",
+    "/anvil/prßojects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_150000.pickle",
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_170000.pickle",
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_190000.pickle",
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_200000.pickle",
