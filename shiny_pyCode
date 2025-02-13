@@ -1,0 +1,44 @@
+import anndata as ad
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from pathlib import Path as path
+
+import pickle
+import sys
+import time
+
+def load_anndata(file_path):
+    """Load AnnData object from a pickle file."""
+    with open(file_path, "rb") as f:
+        adata = pickle.load(f)
+    return adata
+
+
+
+def spac_Histogram_2()
+    star_t_hist = time.time()
+    fig, t_hist= spac.visualization.histogram(adata, annotation=input.h2_anno())
+    end_t_hist = time.time()
+    t_hist = end_t_hist - star_t_hist
+    print(f"Execution Time:seconds")
+    return fig, t_hist
+
+
+
+def spac_Heatmap():
+    star_t_Heat = time.time()
+    fig, t_Heat = spac.visualization.hierarchical_heatmap(adata, annotation=input.hm1_anno(), layer=None, z_score=None, vmin=vmin, vmax=vmax)
+    end_t_Heat = time.time()
+    t_Heat = end_t_Heat - star_t_Heat
+    print(f"Execution Time: econds")
+    return fig, t_Heat
+
+
+def spac_Relational():
+    star_t_Rela = time.time()
+    result = spac.visualization.relational_heatmap(adata, source_annotation=input.rhm_anno1(), target_annotation=input.rhm_anno2())
+    end_t_Rela = time.time()
+    t_Rela = end_t_Rela - star_t_Rela
+    print(f"Execution Time: seconds")
+    return result['figure'], t_Rela
