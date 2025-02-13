@@ -49,6 +49,13 @@ def featvanno():
     return fig, t_Heat
 
 #annovanno
+def annovanno():
+    star_t_Rela = time.time()
+    result = spac.visualization.relational_heatmap(adata, source_annotation=input.rhm_anno1(), target_annotation=input.rhm_anno2())
+    end_t_Rela = time.time()
+    t_Rela = end_t_Rela - star_t_Rela
+    print(f"Execution Time: seconds")
+    return result['figure'], t_Rela
 
 #spatial
 
