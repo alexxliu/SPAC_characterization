@@ -5,15 +5,18 @@ import spac.data_utils
 import matplotlib.pyplot as plt
 import time
 import anndata as ad
+import numpy as np
+import sys
+import time
+import matplotlib.pyplot as plt
+import spac
+from spac.visualization import histogram, cal_bin_num
 
 #load
-def load(file_path):
-    print(f"Processing {file_path}...")
-    #load contents from fule
-    with open(file_path, 'rb') as file:
-        contents = pickle.load(file)
-
-    return contents
+# Load the example data from dev_example.pickle
+file_path = "dev_example.pickle"
+with open(file_path, 'rb') as file:
+    adata = pickle.load(file)
 
 #feature
 def feature(): 
