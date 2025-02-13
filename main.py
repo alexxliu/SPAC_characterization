@@ -4,10 +4,16 @@ import spac.visualization
 import spac.data_utils
 import matplotlib.pyplot as plt
 import time
+import anndata as ad
 
 #load
-def load():
-    pass
+def load(file_path):
+    print(f"Processing {file_path}...")
+    #load contents from fule
+    with open(file_path, 'rb') as file:
+        contents = pickle.load(file)
+
+    return contents
 
 #feature
 def feature(): 
@@ -45,6 +51,8 @@ def featvanno():
 
 #scatterplot
 
+
+
 # Define your list of file paths
 file_paths = [
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_10000.pickle",
@@ -77,17 +85,16 @@ file_paths = [
     "/anvil/projects/tdm/corporate/fnl-spatial/Spring_2025/Data/resampled_data_10000000.pickle",
 ]
 
-# Loop over each file path, load the file, and process it with the  function
-for file_path in file_paths:
-    print(f"Processing {file_path}...")
-    
-    # Load the contents from the file
-    with open(file_path, 'rb') as file:
-        contents = pickle.load(file)
-    
-    # Call each visualzation function
-    fig_anno, run_times = annotations(contents, file_path)
-    
-    #close to save mememory, only need the times
-    plt.close(fig_anno)
+def main():
+    # Loop over each file path, load the file, and process it with the  function
+    for file_path in file_paths:
 
+        contents = load(file_path)
+        
+        # Call each visualzation function
+        fig_anno, run_times = annotations(contents, file_path)
+        
+        #close to save mememory, only need the times
+        plt.close(fig_anno)
+
+main()
