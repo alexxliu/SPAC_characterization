@@ -5,12 +5,18 @@ import spac.data_utils
 import matplotlib.pyplot as plt
 import time
 
-#load 
+#load
+def load():
+    pass
 
-#feautes 
+#feature
+def feature(): 
+    pass
 
-#boxplot 
-
+#boxplot
+def boxplot():
+    pass
+  
 #annotations 
 def annotations(contents, file_path):
     # Measure the run time of the annotation histogram generation
@@ -26,7 +32,10 @@ def annotations(contents, file_path):
     print(f"Annotations Run time for {file_path}: {run_time:.4f} seconds")
     return fig, run_times
 
+
 #featvanno
+def featvanno():
+    pass
 
 #annovanno
 
@@ -81,3 +90,4 @@ for file_path in file_paths:
     
     #close to save mememory, only need the times
     plt.close(fig_anno)
+
